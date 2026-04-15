@@ -40,7 +40,7 @@ local spec = {
 }
 
 if not os.getenv "SSH_TTY" then
-  local local_packs = { "go", "markdown", "java", "bash", "rust", "docker", "terraform", "svelte" }
+  local local_packs = { "go", "markdown", "java", "bash", "rust", "docker", "terraform", "svelte", "cs-omnisharp" }
   for _, pack in ipairs(local_packs) do
     table.insert(spec, { import = "astrocommunity.pack." .. pack })
   end
