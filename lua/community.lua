@@ -33,18 +33,20 @@ local spec = {
   { import = "astrocommunity.motion.marks-nvim" },
 
   -- Packs
-  { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.html-css" },
   { import = "astrocommunity.pack.tailwindcss" },
-  { import = "astrocommunity.pack.biome" },
-  { import = "astrocommunity.pack.go" },
+  { import = "astrocommunity.pack.cs-omnisharp" },
 }
 
-if not os.getenv "SSH_TTY" then
-  local local_packs = { "markdown", "bash", "docker", "terraform", "cs-omnisharp" }
-  for _, pack in ipairs(local_packs) do
-    table.insert(spec, { import = "astrocommunity.pack." .. pack })
-  end
+local local_packs = {}
+if os.getenv "SSH_TTY" then
+  local_packs = { "typescript", "json" }
+else
+  local_packs = { "lua", "markdown", "bash", "docker", "terraform", "biome", "go", "rust" }
+end
+
+for _, pack in ipairs(local_packs) do
+  table.insert(spec, { import = "astrocommunity.pack." .. pack })
 end
 
 return spec
